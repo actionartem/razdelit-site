@@ -6,4 +6,4 @@ https://razdelit.ru/
 
 GitHub Actions публикует сайт в GitHub Pages при изменении ветки main. Исходные документы проекта в этот репозиторий не входят.
 
-Для обновления главной страницы редактируйте landing/index.html, landing/styles.css и landing/script.js. Сборка node build.mjs создаёт _site и исправляет пути для главной страницы.
+Для обновления главной страницы редактируйте landing/index.html, landing/styles.css и landing/script.js. Сборка `node build.mjs` создаёт `_site` и исправляет пути для главной страницы. Открытие `/prototype/` показывает весь прототип. Для публикации не нужны секреты.
