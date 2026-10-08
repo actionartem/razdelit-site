@@ -1,0 +1,45 @@
+/* The original prototype remains unchanged outside ?embed=landing. */
+@font-face{font-family:LandingCommissioner;src:url('../landing/assets/commissioner.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:LandingDela;src:url('../landing/assets/delagothicone.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+html.landing-embed{color-scheme:light;background:transparent;overflow:hidden}
+.landing-embed body{background:transparent;font:400 15px/1.5 LandingCommissioner,system-ui,sans-serif}
+.landing-embed .demo,.landing-embed .guide,.landing-embed .device-caption{display:none}
+.landing-embed .workspace{display:block;margin:0;padding:14px 12px;max-width:none}
+.landing-embed .device-presentation{display:block;padding:0}
+.landing-embed .device-stage{width:100%;height:732px;--device-scale:1!important}
+.landing-embed .device-stage .phone{width:100%;height:732px;border-radius:48px;transform:none;padding:8px;box-shadow:0 12px 25px #172b3d24,inset 0 0 0 3px #303234}
+.landing-embed .phone-screen{width:100%;height:100%;border-radius:40px;background:var(--paper)}
+.landing-embed .ios-status{flex-basis:52px;padding-inline:21px;color:var(--ink)}
+.landing-embed .dynamic-island{width:100px;height:29px;top:10px}
+.landing-embed .dynamic-island:after{top:10px}
+.landing-embed .phone-screen .phonehead{padding:8px 16px 10px;background:var(--paper)}
+.landing-embed .phonehead .brand{font-size:13px}
+.landing-embed .phone-screen .mobilebody{padding:16px 14px;scrollbar-width:thin}
+.landing-embed h1{font-family:LandingDela,system-ui,sans-serif;font-size:19px;font-weight:400;letter-spacing:-.6px;margin-bottom:16px}
+.landing-embed h2{font-size:20px}.landing-embed h3{font-size:16px}
+.landing-embed .item{padding:14px 0}.landing-embed .summary{margin-top:0}
+.landing-embed button{min-height:44px}.landing-embed .count button{padding:8px;min-width:44px}
+.landing-embed .summary>div{background:var(--bg);border-color:var(--line)}
+.landing-embed .summary strong{font-size:20px}.landing-embed .small{font-size:12px}
+.landing-embed .note,.landing-embed .badge{background:var(--soft);color:var(--ink);border-color:var(--line)}
+.landing-embed .phone-screen .bottomnav{grid-template-columns:1fr 1fr;background:var(--paper)}
+.landing-embed .bottomnav button{font-size:13px;color:var(--ink);border-color:var(--line)}
+.landing-embed .bottomnav button.active{background:var(--soft);color:var(--accent)}
+.landing-embed .phone-screen .home-indicator{background:var(--paper)}
+.landing-embed .home-indicator:after{background:var(--ink)}
+.landing-embed .paymark{padding:20px 12px;font-size:14px}
+.landing-embed .check input{width:22px;height:22px}
+.landing-embed .row.between h3{max-width:190px}
+.landing-embed .stack{gap:12px}
+.landing-embed .demo-bill-item{gap:12px;min-height:78px;padding:10px 0}.landing-embed .demo-bill-item>span{display:grid;gap:3px}.landing-embed .demo-bill-item strong{font-size:15px;font-weight:600}
+.landing-embed .demo-bill-item input:not(:disabled)+span .small:last-child{display:none}
+.landing-embed .totals{margin-top:8px;padding-top:12px}
+.landing-embed .signal i,.landing-embed .battery:before{background:var(--ink)}
+.landing-embed{--bg:#edf0fa;--paper:#fff;--ink:#212538;--muted:#535a69;--line:#d5d8df;--accent:#2346d8;--soft:#e9edff}
+.landing-embed[data-demo-theme=dark]{color-scheme:dark;--bg:#272f43;--paper:#202636;--ink:#f3f4ef;--muted:#bdc4d3;--line:#424b60;--accent:#adc0ff;--soft:#303c56}
+.landing-embed[data-demo-theme=dark] .primary{color:#122737}
+.landing-embed[data-demo-theme=dark] button:not(:disabled):hover{background:#2b4356}
+.landing-embed[data-demo-theme=dark] .primary:not(:disabled):hover{background:#b9dfff;color:#122737}
+.landing-embed[data-demo-theme=dark] button:disabled{background:#263b4b;color:#b2c2cf;border-color:var(--line)}
+.landing-embed[data-demo-theme=dark] .statusicon{color:var(--accent)}
+@media(max-width:330px){.landing-embed .workspace{padding-inline:8px}.landing-embed .row.between h3{max-width:150px}.landing-embed .ios-status{padding-inline:17px}.landing-embed .dynamic-island{width:64px}.landing-embed .phone-screen .mobilebody{padding-inline:12px}.landing-embed .summary{grid-template-columns:1fr;gap:8px}.landing-embed .summary>div{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px}.landing-embed .summary strong{font-size:18px;white-space:nowrap;overflow-wrap:normal}.landing-embed .summary .small{max-width:90px}}

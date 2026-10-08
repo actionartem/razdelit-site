@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#fafbf8">
+  <meta name="description" content="Разделить: меню, совместный заказ и расчёт за столом в браузере. Посмотрите прототип и узнайте о раннем тестировании для заведений.">
+  <meta property="og:title" content="Разделить. Счёт общий. Вечер ваш.">
+  <meta property="og:description" content="Меню, заказ и общий счёт с телефона. Посмотрите демонстрацию сервиса для заведений.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://razdelit.ru/">
+  <link rel="canonical" href="https://razdelit.ru/">
+  <title>Разделить | Меню, заказ и общий счёт</title>
+  <link rel="icon" href="landing/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="landing/assets/commissioner.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="landing/assets/delagothicone.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="landing/assets/neucha.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="landing/assets/table.webp" as="image" imagesrcset="landing/assets/table-700.webp 700w, landing/assets/table-1000.webp 1000w, landing/assets/table.webp 1400w" imagesizes="(max-width: 767px) 88vw, 45vw" fetchpriority="high">
+  <link rel="stylesheet" href="landing/styles.css">
+  <script src="landing/script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержимому</a>
+  <header class="site-header wrap">
+    <a class="wordmark" href="#" aria-label="Разделить: в начало страницы">Разделить<span aria-hidden="true">.</span></a>
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a href="#try">Попробовать</a>
+      <a href="#venue">Для заведений</a>
+    </nav>
+    <button class="theme-switch" type="button" aria-label="Тёмная тема: включить" title="Сменить тему">Тёмная тема</button>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Меню, заказ и счёт</p>
+        <h1 id="hero-title">Счёт общий.<br><span class="scribble">Вечер ваш.</span></h1>
+        <p class="hero-description">Закажите с телефона, выберите свои блюда и оплатите свою часть. В браузере, без установки приложения.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#try">Попробовать</a>
+          <a class="text-link" href="#venue">Для заведения</a>
+        </div>
+      </div>
+      <div class="hero-scene">
+        <img class="table-photo" src="landing/assets/table.webp" srcset="landing/assets/table-700.webp 700w, landing/assets/table-1000.webp 1000w, landing/assets/table.webp 1400w" sizes="(max-width: 767px) 88vw, 45vw" width="1400" height="933" alt="Ресторанный стол с пиццей, салатом и голубой салфеткой" fetchpriority="high">
+        <img class="hero-phone" src="landing/assets/menu.webp" width="422" height="894" alt="Экран меню в прототипе «Разделить» на телефоне" fetchpriority="high">
+      </div>
+    </section>
+
+    <section class="interactive-demo wrap" id="try" aria-labelledby="try-title">
+      <div class="demo-copy">
+        <h2 id="try-title">Счёт один.<br><span class="scribble">Как делим?</span></h2>
+        <p class="demo-intro">Каждый платит за свои блюда. Или делим выбранное поровну, сколько бы телефонов ни было за столом.</p>
+        <div class="scenario-switch" role="group" aria-label="Способ деления счёта">
+          <button type="button" data-demo-scenario="items" aria-pressed="true" aria-controls="guest-demo" disabled>Свои блюда</button>
+          <button type="button" data-demo-scenario="equal" aria-pressed="false" aria-controls="guest-demo" disabled>Поровну</button>
+        </div>
+        <p class="sharing-note">Угостить друга? Его блюда тоже можно взять на себя.</p>
+        <div class="demo-tools"><button class="demo-reset" type="button" data-demo-reset disabled>Ещё раз</button></div>
+        <noscript><p>Для работы счёта включите JavaScript.</p></noscript>
+      </div>
+      <div class="demo-device" id="guest-demo">
+        <iframe class="guest-demo-frame" src="prototype/index.html?embed=landing" title="Разделение и оплата счёта" loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <section class="showcase wrap" id="how" aria-labelledby="showcase-title">
+      <div class="showcase-heading">
+        <h2 id="showcase-title">Зал тоже<br><span class="scribble">в теме.</span></h2>
+        <p>Сотрудник видит заказы каждого гостя, подачу блюд и остаток к оплате. Запросы терминала и наличных приходят сюда же.</p>
+      </div>
+      <div class="showcase-layout">
+        <figure class="staff-preview">
+          <img src="landing/assets/staff.webp" width="1060" height="600" loading="lazy" alt="Экран сотрудников в прототипе: заказ стола 7, блюда гостей и остаток к оплате">
+        </figure>
+      </div>
+      <div class="staff-caption"><a class="text-link" href="prototype/index.html" target="_blank" rel="noopener">Посмотреть весь сервис</a></div>
+    </section>
+
+    <section class="contact-section wrap" id="venue" aria-labelledby="venue-title">
+      <div class="contact-copy">
+        <h2 id="venue-title">Попробуем<br>в вашем зале?</h2>
+        <p>Ищем кафе, бары и рестораны для будущего тестирования. Покажем прототип, разберём ваш процесс обслуживания и обсудим, как подготовить пробный запуск.</p>
+        <details class="project-details">
+          <summary>Что важно знать</summary>
+          <p>Сейчас готов прототип. Рабочее приложение ещё предстоит создать. Сервис задуман самостоятельным, подключение ресторанной системы необязательно. Сроки и тарифы пока не утверждены.</p>
+        </details>
+      </div>
+      <div class="contact-addresses" id="contact">
+        <button class="button button-primary contact-launch" type="button" data-open-contact>Обсудить запуск</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <a class="wordmark" href="#">Разделить<span aria-hidden="true">.</span></a>
+    <button type="button" class="support-link" data-open-support>Поддержать разработку</button>
+  </footer>
+
+  <dialog id="support-dialog" aria-labelledby="support-title">
+    <div class="dialog-header"><h2 id="support-title">Поддержать «Разделить»</h2><button class="dialog-close" type="button">Закрыть</button></div>
+    <p>Кампания на Planeta.ru готовится к публикации.</p>
+    <a class="button button-primary" href="prototype/index.html" target="_blank" rel="noopener">Посмотреть сервис</a>
+  </dialog>
+
+  <dialog id="contact-dialog" aria-labelledby="contact-dialog-title">
+    <div class="dialog-header"><h2 id="contact-dialog-title">Давайте<br><span class="scribble">знакомиться.</span></h2><button class="dialog-close" type="button" data-close-contact>Закрыть</button></div>
+    <form id="contact-form">
+      <div class="contact-modes" role="group" aria-label="Как связаться">
+        <button type="button" data-contact-mode="call" aria-pressed="true">Позвоните мне</button>
+        <button type="button" data-contact-mode="message" aria-pressed="false">Хочу написать</button>
+      </div>
+      <label class="form-field"><span>Ваше имя</span><input name="name" autocomplete="name" maxlength="80" required></label>
+      <label class="form-field"><span id="contact-field-label">Телефон</span><input name="contact" type="tel" autocomplete="tel" maxlength="100" required></label>
+      <label class="form-field"><span id="message-field-label">О заведении и удобном времени</span><textarea name="message" rows="3" maxlength="1500"></textarea></label>
+      <button class="button button-primary form-submit" type="submit">Подготовить заявку</button>
+    </form>
+    <div id="contact-draft" hidden>
+      <h3>Ваша заявка</h3>
+      <textarea id="request-text" rows="7" readonly aria-label="Текст заявки"></textarea>
+      <div class="draft-actions"><button class="button button-primary" type="button" data-copy-request>Скопировать</button><button class="text-button" type="button" data-edit-request>Изменить</button></div>
+      <p class="form-status" role="status">Отправка ещё не подключена.</p>
+    </div>
+  </dialog>
+</body>
+</html>
+
