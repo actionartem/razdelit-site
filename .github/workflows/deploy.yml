@@ -27,3 +27,25 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+  https:
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 95
+    permissions:
+      pages: write
+    steps:
+      - name: Enable HTTPS after domain certificate is ready
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          for attempt in $(seq 1 90); do
+            if gh api --method PUT "repos/$REPOSITORY/pages" -F https_enforced=true; then
+              echo "HTTPS enabled"
+              exit 0
+            fi
+            echo "Waiting for DNS and certificate ($attempt/90)"
+            sleep 60
+          done
+          echo "DNS or certificate is still pending. Re-run this workflow after DNS propagation."
+          exit 1
