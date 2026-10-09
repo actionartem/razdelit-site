@@ -20,3 +20,4 @@ dialog{width:min(560px,calc(100% - 32px));max-height:calc(100dvh - 32px);overflo
 @media(max-width:380px){.wrap{width:calc(100% - 32px)}.wordmark{font-size:15px}h1{font-size:30px}.hero-scene{height:316px}.hero-phone{width:140px;top:12px}.hero-description{font-size:16px}.hero-actions{gap:12px 20px}.button{font-size:14px;padding:14px 18px}.contact-section{padding:26px 20px}.contact-section h2{font-size:22px}.dialog-header h2{font-size:21px}.contact-modes{gap:6px}.contact-modes button{font-size:12px;padding-inline:8px}.site-footer .wordmark{font-size:12px}.support-link{max-width:130px;text-align:right}.draft-actions{gap:12px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.button:hover,.button:active{transform:none}}
 
+.site-footer{padding-right:60px}
