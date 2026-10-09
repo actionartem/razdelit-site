@@ -8,8 +8,7 @@ let html = await readFile('landing/index.html', 'utf8');
 html = html.replace(/(href|src|srcset|imagesrcset)="assets\//g, '$1="landing/assets/')
   .replace(/, assets\//g, ', landing/assets/')
   .replace('href="favicon.svg"', 'href="landing/favicon.svg"')
-  .replace('href="styles.css"', 'href="landing/styles.css"')
-  .replace('src="script.js"', 'src="landing/script.js"')
+  .replace(/(href|src)="(styles\.css|script\.js)(\?[^\"]*)?"/g, '$1="landing/$2$3"')
   .replaceAll('../prototype/', 'prototype/')
   .replace('<meta property="og:type" content="website">', '<meta property="og:type" content="website">\n  <meta property="og:url" content="https://razdelit.ru/">\n  <link rel="canonical" href="https://razdelit.ru/">');
 await writeFile('_site/index.html', html);
