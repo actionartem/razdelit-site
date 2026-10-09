@@ -61,6 +61,17 @@
   const contactDraft = document.querySelector('#contact-draft');
   const requestText = document.querySelector('#request-text');
   const formStatus = contactDraft.querySelector('.form-status');
+  const sendStatus = document.querySelector('#contact-send-status');
+  const submitButton = contactForm.querySelector('[type="submit"]');
+  let sending = false;
+  let submission = null;
+  function requestId() {
+    const bytes = crypto.getRandomValues(new Uint8Array(16));
+    bytes[6] = (bytes[6] & 15) | 64;
+    bytes[8] = (bytes[8] & 63) | 128;
+    const hex = Array.from(bytes, value => value.toString(16).padStart(2, '0')).join('');
+    return [hex.slice(0, 8), hex.slice(8, 12), hex.slice(12, 16), hex.slice(16, 20), hex.slice(20)].join('-');
+  }
   const modeButtons = [...document.querySelectorAll('[data-contact-mode]')];
   const savedContacts = { call: '', message: '' };
   let contactMode = 'call';
@@ -87,8 +98,9 @@
     contactForm.elements.message.required = !isCall;
   }));
   contactForm.elements.contact.addEventListener('input', () => contactForm.elements.contact.setCustomValidity(''));
-  contactForm.addEventListener('submit', event => {
+  contactForm.addEventListener('submit', async event => {
     event.preventDefault();
+    if (sending) return;
     const contact = contactForm.elements.contact;
     if (contactMode === 'call' && (contact.value.replace(/\D/g, '').length < 10 || contact.value.replace(/\D/g, '').length > 15)) {
       contact.setCustomValidity('Укажите телефон с кодом города или страны.');
@@ -99,12 +111,49 @@
     const message = contactForm.elements.message.value.trim();
     if (!name || !contact.value.trim() || (contactMode === 'message' && !message)) return;
     requestText.value = [contactMode === 'call' ? 'Прошу перезвонить' : 'Сообщение для «Разделить»', 'Имя: ' + name, 'Контакт: ' + contact.value.trim(), message].filter(Boolean).join('\n\n');
-    contactForm.hidden = true;
-    contactDraft.hidden = false;
-    formStatus.textContent = 'Отправка ещё не подключена.';
-    document.querySelector('[data-copy-request]').focus();
+    const payload = { mode: contactMode, name, contact: contact.value.trim(), message, website: contactForm.elements.website.value };
+    const fingerprint = JSON.stringify(payload);
+    if (!submission || submission.fingerprint !== fingerprint) submission = { fingerprint, id: requestId() };
+    sending = true;
+    contactForm.setAttribute('aria-busy', 'true');
+    [...contactForm.elements].forEach(element => { element.disabled = true; });
+    submitButton.textContent = 'Отправляем…';
+    sendStatus.textContent = 'Отправляем заявку.';
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
+    try {
+      const response = await fetch('https://api.simpletracker.ru/razdelit/contact', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...payload, id: submission.id }), signal: controller.signal
+      });
+      const result = await response.json();
+      if (!response.ok || result.ok !== true) {
+        if (response.status === 429) throw new Error('Слишком много попыток. Попробуйте через 10 минут.');
+        if (result.error === 'unconfirmed') throw new Error('Не удалось подтвердить доставку. Заявка могла прийти — свяжитесь автору в Telegram по ссылке ниже.');
+        throw new Error('Не удалось отправить заявку. Данные сохранены: попробуйте ещё раз или свяжитесь автору в Telegram по ссылке ниже.');
+      }
+      contactForm.hidden = true;
+      contactDraft.hidden = false;
+      sendStatus.textContent = '';
+      formStatus.textContent = 'Спасибо! Свяжемся с вами по указанному контакту.';
+      document.querySelector('[data-copy-request]').focus();
+    } catch (error) {
+      sendStatus.textContent = error.name === 'AbortError' || error instanceof TypeError
+        ? 'Не удалось подтвердить доставку. Данные сохранены. Попробуйте снова или свяжитесь автору в Telegram по ссылке ниже.'
+        : error.message;
+    } finally {
+      clearTimeout(timeout);
+      sending = false;
+      contactForm.removeAttribute('aria-busy');
+      [...contactForm.elements].forEach(element => { element.disabled = false; });
+      submitButton.textContent = 'Отправить заявку';
+    }
   });
   document.querySelector('[data-edit-request]').addEventListener('click', () => {
+    contactForm.reset();
+    submission = null;
+    savedContacts.call = savedContacts.message = '';
+    sendStatus.textContent = '';
     contactDraft.hidden = true;
     contactForm.hidden = false;
     contactForm.elements.name.focus();
@@ -112,11 +161,11 @@
   document.querySelector('[data-copy-request]').addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(requestText.value);
-      formStatus.textContent = 'Заявка скопирована. Отправка ещё не подключена.';
+      formStatus.textContent = 'Текст отправленной заявки скопирован.';
     } catch {
       requestText.focus();
       requestText.select();
-      formStatus.textContent = 'Скопируйте выделенный текст. Отправка ещё не подключена.';
+      formStatus.textContent = 'Скопируйте выделенный текст.';
     }
   });
 })();

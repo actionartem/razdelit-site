@@ -1,0 +1,29 @@
+[Unit]
+Description=Razdelit website contact to Telegram
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=razdelit-contact
+Group=razdelit-contact
+WorkingDirectory=/opt/razdelit-contact
+EnvironmentFile=/etc/razdelit-contact.env
+ExecStart=/usr/local/bin/node --max-old-space-size=48 /opt/razdelit-contact/server.mjs
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+CapabilityBoundingSet=
+MemoryMax=128M
+CPUQuota=20%
+TasksMax=32
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

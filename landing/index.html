@@ -112,13 +112,16 @@
       <label class="form-field"><span>Ваше имя</span><input name="name" autocomplete="name" maxlength="80" required></label>
       <label class="form-field"><span id="contact-field-label">Телефон</span><input name="contact" type="tel" autocomplete="tel" maxlength="100" required></label>
       <label class="form-field"><span id="message-field-label">О заведении и удобном времени</span><textarea name="message" rows="3" maxlength="1500"></textarea></label>
-      <button class="button button-primary form-submit" type="submit">Подготовить заявку</button>
+      <input name="website" type="text" hidden tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="button button-primary form-submit" type="submit">Отправить заявку</button>
+      <p id="contact-send-status" class="form-status" role="status" aria-live="polite"></p>
+      <p class="form-status">Имя, контакт и сообщение получит автор проекта в Telegram. <a href="https://t.me/artivtw" target="_blank" rel="noopener">Написать автору напрямую</a></p>
     </form>
     <div id="contact-draft" hidden>
-      <h3>Ваша заявка</h3>
+      <h3>Заявка отправлена</h3>
       <textarea id="request-text" rows="7" readonly aria-label="Текст заявки"></textarea>
-      <div class="draft-actions"><button class="button button-primary" type="button" data-copy-request>Скопировать</button><button class="text-button" type="button" data-edit-request>Изменить</button></div>
-      <p class="form-status" role="status">Отправка ещё не подключена.</p>
+      <div class="draft-actions"><button class="button button-primary" type="button" data-copy-request>Скопировать</button><button class="text-button" type="button" data-edit-request>Новая заявка</button></div>
+      <p class="form-status" role="status">Спасибо! Свяжемся с вами по указанному контакту.</p>
     </div>
   </dialog>
 </body>
