@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#fafbf8">
-  <meta name="description" content="Разделить: меню, совместный заказ и расчёт за столом в браузере. Посмотрите прототип и узнайте о раннем тестировании для заведений.">
+  <meta name="description" content="Разделить: меню, совместный заказ и расчёт за столом в браузере. Для кафе, баров и ресторанов. Обсудите подключение для вашего заведения.">
   <meta property="og:title" content="Разделить. Счёт общий. Вечер ваш.">
   <meta property="og:description" content="Меню, заказ и общий счёт с телефона. Посмотрите демонстрацию сервиса для заведений.">
   <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
-<body>
+<body id="top">
   <a class="skip-link" href="#main">Перейти к содержимому</a>
   <header class="site-header wrap">
     <a class="wordmark" href="#" aria-label="Разделить: в начало страницы">Разделить<span aria-hidden="true">.</span></a>
@@ -26,7 +26,7 @@
       <a href="#try">Попробовать</a>
       <a href="#venue">Для заведений</a>
     </nav>
-    <button class="theme-switch" type="button" aria-label="Тёмная тема: включить" title="Сменить тему">Тёмная тема</button>
+    <button class="theme-switch" type="button" aria-label="Включить тёмную тему" title="Включить тёмную тему" data-icon="moon"><span class="theme-icon" aria-hidden="true"></span></button>
   </header>
 
   <main id="main">
@@ -73,17 +73,12 @@
           <img src="assets/staff.webp" width="1060" height="600" loading="lazy" alt="Экран сотрудников в прототипе: заказ стола 7, блюда гостей и остаток к оплате">
         </figure>
       </div>
-      <div class="staff-caption"><a class="text-link" href="../prototype/index.html" target="_blank" rel="noopener">Посмотреть весь сервис</a></div>
     </section>
 
     <section class="contact-section wrap" id="venue" aria-labelledby="venue-title">
       <div class="contact-copy">
-        <h2 id="venue-title">Попробуем<br>в вашем зале?</h2>
-        <p>Ищем кафе, бары и рестораны для будущего тестирования. Покажем прототип, разберём ваш процесс обслуживания и обсудим, как подготовить пробный запуск.</p>
-        <details class="project-details">
-          <summary>Что важно знать</summary>
-          <p>Сейчас готов прототип. Рабочее приложение ещё предстоит создать. Сервис задуман самостоятельным, подключение ресторанной системы необязательно. Сроки и тарифы пока не утверждены.</p>
-        </details>
+        <h2 id="venue-title">Для вашего<br>заведения.</h2>
+        <p>Меню, заказы и расчёт за столом для кафе, баров и ресторанов. Обсудим задачи вашего заведения и подберём удобный формат подключения.</p>
       </div>
       <div class="contact-addresses" id="contact">
         <button class="button button-primary contact-launch" type="button" data-open-contact>Обсудить запуск</button>
@@ -96,10 +91,12 @@
     <button type="button" class="support-link" data-open-support>Поддержать разработку</button>
   </footer>
 
+  <a class="back-to-top" href="#top" aria-label="Вернуться наверх" title="Вернуться наверх" hidden><span aria-hidden="true"></span></a>
+
   <dialog id="support-dialog" aria-labelledby="support-title">
     <div class="dialog-header"><h2 id="support-title">Поддержать «Разделить»</h2><button class="dialog-close" type="button">Закрыть</button></div>
-    <p>Кампания на Planeta.ru готовится к публикации.</p>
-    <a class="button button-primary" href="../prototype/index.html" target="_blank" rel="noopener">Посмотреть сервис</a>
+    <p>Помогите нам развивать «Разделить». Поддержите проект на Planeta.ru и станьте частью его истории.</p>
+    <a class="button button-primary" href="https://planeta.ru/campaigns/57958" target="_blank" rel="noopener">Поддержать на Planeta.ru</a>
   </dialog>
 
   <dialog id="contact-dialog" aria-labelledby="contact-dialog-title">

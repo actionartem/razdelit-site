@@ -6,8 +6,10 @@
   const currentTheme = () => root.dataset.theme || (systemTheme.matches ? 'dark' : 'light');
   function updateThemeButton() {
     const isDark = currentTheme() === 'dark';
-    themeButton.textContent = isDark ? 'Светлая тема' : 'Тёмная тема';
-    themeButton.setAttribute('aria-label', isDark ? 'Светлая тема: включить' : 'Тёмная тема: включить');
+    const label = isDark ? 'Включить светлую тему' : 'Включить тёмную тему';
+    themeButton.dataset.icon = isDark ? 'sun' : 'moon';
+    themeButton.setAttribute('aria-label', label);
+    themeButton.title = label;
     document.querySelector('meta[name="theme-color"]').content = isDark ? '#151925' : '#fafbf8';
   }
   try {
@@ -22,6 +24,10 @@
     sendDemoTheme();
   });
   systemTheme.addEventListener('change', updateThemeButton);
+
+  const backToTop = document.querySelector('.back-to-top');
+  const headerObserver = new IntersectionObserver(([entry]) => { backToTop.hidden = entry.isIntersecting; });
+  headerObserver.observe(document.querySelector('.site-header'));
 
   const demoFrame = document.querySelector('.guest-demo-frame');
   const scenarioButtons = [...document.querySelectorAll('[data-demo-scenario]')];
